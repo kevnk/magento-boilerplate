@@ -71,20 +71,22 @@ class Kevnk_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
                 $itemProp .= ' itemprop="' . $item . '"';
             }
         } else {
-            $itemProp = 'itemprop="' . $prop . '"';
+            $itemProp = ' itemprop="' . $prop . '"';
         }
         
         return $itemProp;
     }
     
     public function itemType($type) {
-        $itemType = 'itemscope';
+        $itemType = ' itemscope';
         if(is_array($type)) {
+            $i = 0;
             foreach($type as $item) {
-                $itemType .= ' itemtype="' . $item . '"';
+                $attrName = !$i++ ? 'itemtype' : 'additionalType';
+                $itemType .= ' ' . $attrName . '="http://schema.org/' . $item . '"';
             }
         } else {
-            $itemType = ' itemtype="' . $type . '"';
+            $itemType .= ' itemtype="http://schema.org/' . $type . '"';
         }
         
         return $itemType;
@@ -95,6 +97,12 @@ class Kevnk_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
         $itemProp = $prop ? ' ' . $this->itemProp($prop) : '';
         $content = $content ? ' content="' . $content . '"' : '';
         return '<meta' . $itemType . $itemProp . $content . '/>';
+    }
+    
+    public function linkTag($prop=null, $href=null) {
+        $itemProp = $prop ? ' ' . $this->itemProp($prop) : '';
+        $href = $href ? ' href="' . $href . '"' : '';
+        return '<link' . $itemProp . $href . '/>';
     }
     
 }

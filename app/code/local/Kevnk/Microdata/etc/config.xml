@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Kevnk_Microdata>
+            <version>1.0.0</version>
+        </Kevnk_Microdata>
+    </modules>
+
+    <global>
+        <blocks>
+            <kevnk_microdata>
+                <class>Kevnk_Microdata_Block</class>
+            </kevnk_microdata>
+        </blocks>
+
+        <models>
+            <kevnk_microdata>
+                <class>Kevnk_Microdata_Model</class>
+            </kevnk_microdata>
+            
+            <cms>
+                <rewrite>
+                    <template_filter>Kevnk_Microdata_Model_Cms_Template_Filter</template_filter>
+                </rewrite>
+            </cms>
+        </models>
+
+        <helpers>
+            <kevnk_microdata>
+                <class>Kevnk_Microdata_Helper</class>
+            </kevnk_microdata>
+        </helpers>
+        
+        <cms>
+            <page>
+                <tempate_filter>cms/template_filter</tempate_filter>
+            </page>
+        </cms>
+    </global>
+    
+    <frontend>
+        <layout>
+            <updates>
+                <default>
+                    <file>kevnk/microdata.xml</file>
+                </default>
+            </updates>
+        </layout>
+    </frontend>
+</config>

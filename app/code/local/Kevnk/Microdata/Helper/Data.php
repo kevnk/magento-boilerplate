@@ -26,7 +26,7 @@ class Kevnk_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
         
         //-- Check if CollectionPage
         if($pathInfo == 'catalog/category/view') {
-            return $this->itemType('ItemList');
+            return $this->itemType(array('CollectionPage','ItemList'));
         }
         
         //-- Check if ItemPage

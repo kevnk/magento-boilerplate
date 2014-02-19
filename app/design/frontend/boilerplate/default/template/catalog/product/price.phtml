@@ -75,20 +75,20 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
             <?php if ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 0)): // including ?>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_price + $_weeeTaxAmount, false) ?>
                     </span>
                 </span>
                 <span class="price-including-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Incl. Tax:') ?></span>
-                    <span class="price" id="price-including-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-including-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_finalPriceInclTax + $_weeeTaxAmountInclTaxes, false) ?>
                     </span>
                 </span>
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 1)): // incl. + weee ?>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_price + $_weeeTaxAmount, false) ?>
                     </span>
                 </span>
@@ -101,20 +101,20 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                     )</span>
                 <span class="price-including-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Incl. Tax:') ?></span>
-                    <span class="price" id="price-including-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-including-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_finalPriceInclTax + $_weeeTaxAmountInclTaxes, false) ?>
                     </span>
                 </span>
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 4)): // incl. + weee ?>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_price + $_weeeTaxAmount, false) ?>
                     </span>
                 </span>
                 <span class="price-including-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Incl. Tax:') ?></span>
-                    <span class="price" id="price-including-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-including-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_finalPriceInclTax + $_weeeTaxAmountInclTaxes, false) ?>
                     </span>
                     <span class="weee">(
@@ -128,7 +128,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 2)): // excl. + weee + final ?>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_price, false) ?>
                     </span>
                 </span>
@@ -140,14 +140,14 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                 <?php endforeach; ?>
                 <span class="price-including-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Incl. Tax:') ?></span>
-                    <span class="price" id="price-including-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-including-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_finalPriceInclTax + $_weeeTaxAmountInclTaxes, false) ?>
                     </span>
                 </span>
             <?php else: ?>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php if ($_finalPrice == $_price): ?>
                             <?php echo $_coreHelper->formatPrice($_price, false) ?>
                         <?php else: ?>
@@ -157,7 +157,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                 </span>
                 <span class="price-including-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Incl. Tax:') ?></span>
-                    <span class="price" id="price-including-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-including-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_finalPriceInclTax, false) ?>
                     </span>
                 </span>
@@ -165,7 +165,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
         <?php else: ?>
             <?php if ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, array(0, 1))): // including ?>
                 <?php $weeeAmountToDisplay = $_taxHelper->displayPriceIncludingTax() ? $_weeeTaxAmountInclTaxes : $_weeeTaxAmount ?>
-                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                      <?php echo $_coreHelper->currency($_price + $weeeAmountToDisplay, true, true) ?>
                 </span>
 
@@ -180,7 +180,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                         )</span>
                 <?php endif; ?>
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 4)): // incl. + weee ?>
-                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                     <?php echo $_coreHelper->formatPrice($_price + $_weeeTaxAmount, true) ?>
                 </span>
                 <span class="weee">(
@@ -191,7 +191,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                     <?php endforeach; ?>
                     )</span>
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 2)): // excl. + weee + final ?>
-                <span class="regular-price"><?php echo $_coreHelper->formatPrice($_price, true) ?></span><br/>
+                <span class="regular-price"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>><?php echo $_coreHelper->formatPrice($_price, true) ?></span><br/>
                 <?php $weeeAmountToDisplay = $_taxHelper->displayPriceIncludingTax() ? $_weeeTaxAmountInclTaxes : $_weeeTaxAmount ?>
                 <?php foreach ($_weeeTaxAttributes as $_weeeTaxAttribute): ?>
                     <span class="weee">
@@ -200,11 +200,11 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                     </span>
                 <?php endforeach; ?>
                 <span class="regular-price"
-                      id="product-price-weee-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                      id="product-price-weee-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                     <?php echo $_coreHelper->currency($_price + $weeeAmountToDisplay, true, true) ?>
                 </span>
             <?php else: ?>
-                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                     <?php if ($_finalPrice == $_price): ?>
                         <?php echo $_coreHelper->formatPrice($_price, true) ?>
                     <?php else: ?>
@@ -231,7 +231,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                     <span class="price-excluding-tax">
                         <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
                         <span class="price"
-                              id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                              id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                             <?php echo $_coreHelper->formatPrice($_finalPrice + $_weeeTaxAmount, false) ?>
                         </span>
                     </span>
@@ -245,7 +245,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
             <?php else: ?>
                 <p class="special-price">
                     <span class="price-label"><?php echo $_specialPriceStoreLabel ?></span>
-                <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                     <?php echo $_coreHelper->formatPrice($_finalPrice + $_weeeTaxAmountInclTaxes, false) ?>
                 </span>
                 </p>
@@ -264,7 +264,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                 <span class="price-label"><?php echo $_specialPriceStoreLabel ?></span>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                       <?php echo $_coreHelper->formatPrice($_finalPrice + $_weeeTaxAmount, false) ?>
                     </span>
                 </span>
@@ -285,7 +285,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
             <?php else: ?>
                 <p class="special-price">
                     <span class="price-label"><?php echo $this->__('Special Price:') ?></span>
-                <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                     <?php echo $_coreHelper->formatPrice($_finalPrice + $_weeeTaxAmountInclTaxes, false) ?>
                 </span>
                 </p>
@@ -311,7 +311,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                 <span class="price-label"><?php echo $_specialPriceStoreLabel ?></span>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_finalPrice + $_weeeTaxAmount, false) ?>
                     </span>
                 </span>
@@ -341,7 +341,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                 <span class="price-label"><?php echo $_specialPriceStoreLabel ?></span>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                         <?php echo $_coreHelper->formatPrice($_finalPrice, false) ?>
                     </span>
                 </span>
@@ -372,7 +372,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                     <span class="price-excluding-tax">
                         <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
                         <span class="price"
-                              id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                              id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                             <?php echo $_coreHelper->formatPrice($_finalPrice, false) ?>
                         </span>
                     </span>
@@ -387,7 +387,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
             <?php else: ?>
                 <p class="special-price">
                     <span class="price-label"><?php echo $_specialPriceStoreLabel ?></span>
-                <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                     <?php echo $_coreHelper->formatPrice($_finalPrice, false) ?>
                 </span>
                 </p>
@@ -409,7 +409,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
             <span class="minimal-price-link">
         <?php endif ?>
         <span class="label"><?php echo $this->__('As low as:') ?></span>
-        <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+        <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('price'); ?>>
                 <?php echo $_coreHelper->formatPrice($_minimalPriceDisplayValue, false) ?>
             </span>
         <?php if ($this->getUseLinkForAsLowAs()): ?>
@@ -443,7 +443,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                     <span class="price-excluding-tax">
                         <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
                         <span class="price"
-                              id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                              id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('lowPrice'); ?>>
                             <?php echo $_coreHelper->formatPrice($_exclTax, false) ?>
                         </span>
                     </span>
@@ -461,7 +461,7 @@ $_specialPriceStoreLabel = $this->getProductAttribute('special_price')->getStore
                         $_showPrice = $_exclTax;
                     }
                     ?>
-                    <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                    <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>"<?php echo $this->helper('kevnk_microdata')->itemProp('lowPrice'); ?>>
                     <?php echo $_coreHelper->formatPrice($_showPrice, false) ?>
                 </span>
                 <?php endif; ?>

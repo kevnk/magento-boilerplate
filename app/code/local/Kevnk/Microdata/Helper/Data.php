@@ -26,7 +26,7 @@ class Kevnk_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
         
         //-- Check if CollectionPage
         if($pathInfo == 'catalog/category/view') {
-            return $this->itemType('CollectionPage');
+            return $this->itemType('ItemList');
         }
         
         //-- Check if ItemPage
@@ -101,7 +101,7 @@ class Kevnk_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
     
     public function linkTag($prop=null, $href=null) {
         $itemProp = $prop ? ' ' . $this->itemProp($prop) : '';
-        $href = $href ? ' href="' . $href . '"' : '';
+        $href = $href ? ' href="http://schema.org/' . $href . '"' : '';
         return '<link' . $itemProp . $href . '/>';
     }
     

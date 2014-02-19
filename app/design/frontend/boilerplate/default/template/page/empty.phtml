@@ -33,7 +33,7 @@
 <head>
     <?php echo $this->getChildHtml('head') ?>
 </head>
-<body class="page-empty <?php echo $this->getBodyClass()?$this->getBodyClass():'' ?>">
+<body class="page-empty <?php echo $this->getBodyClass()?$this->getBodyClass():'' ?>" <?php echo $this->helper('kevnk_microdata')->getBodyMicrodata(); ?>>
     <?php echo $this->getChildHtml('after_body_start') ?>
     <?php echo $this->getChildHtml('global_messages') ?>
     <?php echo $this->getChildHtml('content') ?>

@@ -33,7 +33,7 @@
 <head>
     <?php echo $this->getChildHtml('head') ?>
 </head>
-<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?>>
+<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?> <?php echo $this->helper('kevnk_microdata')->getBodyMicrodata(); ?>>
 
     <?php echo $this->getChildHtml('after_body_start') ?>
     <?php echo $this->getChildHtml('header') ?>

@@ -46,18 +46,18 @@ class Kevnk_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
         
         //-- Check if AboutPage
         if(Mage::getStoreConfig('micro/urlkeys/aboutpage',Mage::app()->getStore()) == $uri) {
-            return $this->getItemType('AboutPage');
+            return $this->itemType('AboutPage');
         };
         
         //-- Check if ContactPage
         if(Mage::getStoreConfig('micro/urlkeys/contactpage',Mage::app()->getStore()) == $uri) {
-            return $this->getItemType('ContactPage');
+            return $this->itemType('ContactPage');
         };
         
         
         //-- Check if ProfilePage
         if(Mage::getStoreConfig('micro/urlkeys/profilepage',Mage::app()->getStore()) == $uri) {
-            return $this->getItemType('ProfilePage');
+            return $this->itemType('ProfilePage');
         };
         
         return $this->itemType('WebPage');

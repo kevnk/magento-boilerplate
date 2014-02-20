@@ -31,14 +31,14 @@
         <tbody>
             <?php foreach ($collection as $_rating): ?>
                 <?php if($_rating->getSummary()): ?>
-                    <tr<?php echo $this->helper('kevnk_microdata')->itemProp('aggregateRating') . $this->helper('kevnk_microdata')->itemType('AggregateRating'); ?>>
-                        <th<?php echo $this->helper('kevnk_microdata')->itemProp('name'); ?>><?php echo $this->__($this->escapeHtml($_rating->getRatingCode())) ?></th>
+                    <tr <?php echo $this->helper('kevnk_microdata')->microdata('aggregateRating', 'AggregateRating'); ?>>
+                        <th <?php echo $this->helper('kevnk_microdata')->microdata('name'); ?>><?php echo $this->__($this->escapeHtml($_rating->getRatingCode())) ?></th>
                         <td>
                             <div class="rating-box">
                                 <div class="rating" style="width:<?php echo ceil($_rating->getSummary()) ?>%;"></div>
-                                <?php echo $this->helper('kevnk_microdata')->metaTag(false, 'worstRating', '1'); ?>
-                                <?php echo $this->helper('kevnk_microdata')->metaTag(false, 'ratingValue', (ceil($_rating->getSummary())/100*5)); ?>
-                                <?php echo $this->helper('kevnk_microdata')->metaTag(false, 'bestRating', '5'); ?>
+                                <?php echo $this->helper('kevnk_microdata')->microdata('worstRating', '', 'meta', '1'); ?>
+                                <?php echo $this->helper('kevnk_microdata')->microdata('ratingValue', '', 'meta', (ceil($_rating->getSummary())/100*5)); ?>
+                                <?php echo $this->helper('kevnk_microdata')->microdata('bestRating', '', 'meta', '5'); ?>
                             </div>
                         </td>
                     </tr>

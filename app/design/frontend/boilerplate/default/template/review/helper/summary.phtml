@@ -25,18 +25,18 @@
  */
 ?>
 <?php if ($this->getReviewsCount()): ?>
-    <div class="ratings"<?php echo $this->helper('kevnk_microdata')->itemProp('aggregateRating') . $this->helper('kevnk_microdata')->itemType('AggregateRating'); ?>>
+    <div class="ratings" <?php echo $this->helper('kevnk_microdata')->microdata('aggregateRating', 'AggregateRating'); ?>>
         <?php if ($this->getRatingSummary()):?>
             <div class="rating-box">
                 <div class="rating" style="width:<?php echo $this->getRatingSummary() ?>%"></div>
-                <?php echo $this->helper('kevnk_microdata')->metaTag(false, 'worstRating', '1'); ?>
-                <?php echo $this->helper('kevnk_microdata')->metaTag(false, 'ratingValue', (ceil($this->getRatingSummary())/100*5)); ?>
-                <?php echo $this->helper('kevnk_microdata')->metaTag(false, 'bestRating', '5'); ?>
+                <?php echo $this->helper('kevnk_microdata')->microdata('worstRating', '', 'meta', '1'); ?>
+                <?php echo $this->helper('kevnk_microdata')->microdata('ratingValue', '', 'meta', (ceil($this->getRatingSummary())/100*5)); ?>
+                <?php echo $this->helper('kevnk_microdata')->microdata('bestRating', '', 'meta', '5'); ?>
             </div>
         <?php endif;?>
         <p class="rating-links">
             <a href="<?php echo $this->getReviewsUrl() ?>"><?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?></a>
-            <?php echo $this->helper('kevnk_microdata')->metaTag('', 'reviewCount', $this->getReviewsCount()); ?>
+            <?php echo $this->helper('kevnk_microdata')->microdata('reviewCount', '', 'meta', $this->getReviewsCount()); ?>
             <span class="separator">|</span>
             <a href="<?php echo $this->getReviewsUrl() ?>#review-form"><?php echo $this->__('Add Your Review') ?></a>
         </p>

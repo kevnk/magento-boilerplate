@@ -1,6 +1,6 @@
 app/code/local/Webcomm/BootstrapNavigation         app/code/local/Webcomm/BootstrapNavigation
-app/code/local/Kevnk/Microdata                     app/code/local/Kevnk/Microdata
+app/code/local/Lucky/Microdata                     app/code/local/Lucky/Microdata
 app/design/frontend/boilerplate/default            app/design/frontend/boilerplate/default
 app/etc/modules/Webcomm_BootstrapNavigation.xml    app/etc/modules/Webcomm_BootstrapNavigation.xml
-app/etc/modules/Kevnk_Microdata.xml                app/etc/modules/Kevnk_Microdata.xml
+app/etc/modules/Lucky_Microdata.xml                app/etc/modules/Lucky_Microdata.xml
 skin/frontend/boilerplate/default                  skin/frontend/boilerplate/default

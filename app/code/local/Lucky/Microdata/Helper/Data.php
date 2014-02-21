@@ -3,13 +3,16 @@
 /**
  * Data.php - Helper file for Microdata module
  *
- * @copyright   Copyright (c) 2011 Kevin Kirchner
+ * @copyright   Copyright (c) 2014 LuckyGunner
  * @license     
  * @author      Kevin Kirchner <hello@kevnk.com>
  */
  
-class Kevnk_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
+class Lucky_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
 {
+
+    const MICRODATA_VOCAB_URI = "http://schema.org/";
+
     public function getBodyMicrodata($page = null) {
         
         //-- Used for PopupPage and PrintPage
@@ -26,7 +29,7 @@ class Kevnk_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
         
         //-- Check if CollectionPage
         if($pathInfo == 'catalog/category/view') {
-            return $this->itemType(array('CollectionPage','ItemList'));
+            return $this->itemType( array('CollectionPage', 'ItemList') );
         }
         
         //-- Check if ItemPage
@@ -63,18 +66,21 @@ class Kevnk_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
         return $this->itemType('WebPage');
     }
     
-    public function microdata($prop='', $type='', $tag='', $content='') {
+    public function microdata($prop='', $type='', $content='', $tag='') {
         $microdata = '';
-        if($tag) {
-            if($tag=='link') $microdata .= $this->linkTag($prop, $content);
-            if($tag=='meta') $microdata .= $this->metaTag($type, $prop, $content);
+        if($content) {
+            if($tag == 'link') {
+                $microdata .= $this->linkTag($prop, $content);
+            } else {
+                $microdata .= $this->metaTag($prop, $content, $type);
+            }
         } else {
-            if($prop) $microdata .= $this->itemProp($prop);            
+            if($prop) $microdata .= $this->itemProp($prop);
             if($type) $microdata .= $this->itemType($type);
         }
         return $microdata;
     }
-    
+
     public function itemProp($prop) {
         $itemProp = '';
         if(is_array($prop)) {
@@ -89,31 +95,29 @@ class Kevnk_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
     }
     
     public function itemType($type) {
-        $itemType = ' itemscope';
+        $itemType = 'itemscope';
         if(is_array($type)) {
             $i = 0;
             foreach($type as $item) {
-                $attrName = !$i++ ? 'itemtype' : 'additionalType';
-                $itemType .= ' ' . $attrName . '="http://schema.org/' . $item . '"';
+                $itemType .= !$i++ ? ' itemtype="' . self::MICRODATA_VOCAB_URI . $item . '"' : ' additionaltype="' . self::MICRODATA_VOCAB_URI . $item . '"';
             }
         } else {
-            $itemType .= ' itemtype="http://schema.org/' . $type . '"';
+            $itemType .= ' itemtype="' . self::MICRODATA_VOCAB_URI . $type . '"';
         }
         
         return $itemType;
     }
     
-    public function metaTag($prop='', $type='', $content='') {
-        $itemType = $type ? ' ' . $this->itemType($type) : '';
+    public function linkTag($prop='', $content='') {
         $itemProp = $prop ? ' ' . $this->itemProp($prop) : '';
+        return '<link' . $itemProp . ' href="' . self::MICRODATA_VOCAB_URI . $content . '"/>';
+    }
+
+    public function metaTag($prop='', $content='', $type='') {
+        $itemProp = $prop ? ' ' . $this->itemProp($prop) : '';
+        $itemType = $type ? ' ' . $this->itemType($type) : '';
         $content = $content ? ' content="' . $content . '"' : '';
         return '<meta' . $itemType . $itemProp . $content . '/>';
-    }
-    
-    public function linkTag($prop='', $href='') {
-        $itemProp = $prop ? ' ' . $this->itemProp($prop) : '';
-        $href = $href ? ' href="http://schema.org/' . $href . '"' : '';
-        return '<link' . $itemProp . $href . '/>';
     }
     
 }

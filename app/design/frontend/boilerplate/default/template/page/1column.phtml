@@ -30,10 +30,14 @@
  */
 ?>
 <!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class=""> <!--<![endif]-->
 <head>
 <?php echo $this->getChildHtml('head') ?>
 </head>
-<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?> <?php echo $this->helper('kevnk_microdata')->getBodyMicrodata(); ?>>
+<body<?php echo $this->getBodyClass()?' class="'.$this->getBodyClass().'"':'' ?> <?php echo $this->helper('lucky_microdata')->getBodyMicrodata(); ?>>
 
     <?php echo $this->getChildHtml('after_body_start') ?>
     <?php echo $this->getChildHtml('header') ?>

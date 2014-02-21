@@ -20,7 +20,7 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
@@ -31,14 +31,14 @@
         <tbody>
             <?php foreach ($collection as $_rating): ?>
                 <?php if($_rating->getSummary()): ?>
-                    <tr <?php echo $this->helper('kevnk_microdata')->microdata('aggregateRating', 'AggregateRating'); ?>>
-                        <th <?php echo $this->helper('kevnk_microdata')->microdata('name'); ?>><?php echo $this->__($this->escapeHtml($_rating->getRatingCode())) ?></th>
+                    <tr <?php echo $this->helper('lucky_microdata')->microdata('aggregateRating', 'AggregateRating') ?>>
+                        <th <?php echo $this->helper('lucky_microdata')->microdata('name') ?>><?php echo $this->__($this->escapeHtml($_rating->getRatingCode())) ?></th>
                         <td>
                             <div class="rating-box">
                                 <div class="rating" style="width:<?php echo ceil($_rating->getSummary()) ?>%;"></div>
-                                <?php echo $this->helper('kevnk_microdata')->microdata('worstRating', '', 'meta', '1'); ?>
-                                <?php echo $this->helper('kevnk_microdata')->microdata('ratingValue', '', 'meta', (ceil($_rating->getSummary())/100*5)); ?>
-                                <?php echo $this->helper('kevnk_microdata')->microdata('bestRating', '', 'meta', '5'); ?>
+                                <?php echo $this->helper('lucky_microdata')->microdata('worstRating', '', '1'); ?>
+                                <?php echo $this->helper('lucky_microdata')->microdata('ratingValue', '', (ceil($_rating->getSummary())/100*5)); ?>
+                                <?php echo $this->helper('lucky_microdata')->microdata('bestRating', '', '5'); ?>
                             </div>
                         </td>
                     </tr>

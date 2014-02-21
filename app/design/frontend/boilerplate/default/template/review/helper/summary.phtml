@@ -20,23 +20,23 @@
  *
  * @category    design
  * @package     base_default
- * @copyright   Copyright (c) 2013 Magento Inc. (http://www.magentocommerce.com)
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
  * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
  */
 ?>
 <?php if ($this->getReviewsCount()): ?>
-    <div class="ratings" <?php echo $this->helper('kevnk_microdata')->microdata('aggregateRating', 'AggregateRating'); ?>>
+    <div class="ratings" <?php echo $this->helper('lucky_microdata')->microdata('aggregateRating', 'AggregateRating') ?>>
         <?php if ($this->getRatingSummary()):?>
             <div class="rating-box">
                 <div class="rating" style="width:<?php echo $this->getRatingSummary() ?>%"></div>
-                <?php echo $this->helper('kevnk_microdata')->microdata('worstRating', '', 'meta', '1'); ?>
-                <?php echo $this->helper('kevnk_microdata')->microdata('ratingValue', '', 'meta', (ceil($this->getRatingSummary())/100*5)); ?>
-                <?php echo $this->helper('kevnk_microdata')->microdata('bestRating', '', 'meta', '5'); ?>
+                <?php echo $this->helper('lucky_microdata')->microdata('worstRating', '', '1'); ?>
+                <?php echo $this->helper('lucky_microdata')->microdata('ratingValue', '', (ceil($this->getRatingSummary())/100*5)); ?>
+                <?php echo $this->helper('lucky_microdata')->microdata('bestRating', '', '5'); ?>
             </div>
         <?php endif;?>
         <p class="rating-links">
             <a href="<?php echo $this->getReviewsUrl() ?>"><?php echo $this->__('%d Review(s)', $this->getReviewsCount()) ?></a>
-            <?php echo $this->helper('kevnk_microdata')->microdata('reviewCount', '', 'meta', $this->getReviewsCount()); ?>
+            <?php echo $this->helper('lucky_microdata')->microdata('reviewCount', '', $this->getReviewsCount()) ?>
             <span class="separator">|</span>
             <a href="<?php echo $this->getReviewsUrl() ?>#review-form"><?php echo $this->__('Add Your Review') ?></a>
         </p>

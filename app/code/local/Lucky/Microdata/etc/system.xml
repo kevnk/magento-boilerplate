@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <config>
-    <!-- @todo - put all this under the Kevnk module's tab instead of making a Kevnk tab here -->
+    <!-- @todo - put all this under the Lucky module's tab instead of making a Lucky tab here -->
 <!--
     <tabs>
-        <kevnkconfig translate="label" module="kevnk_microdata">
+        <luckyconfig translate="label" module="lucky_microdata">
             <label>Classy Llama Studios</label>
             <sort_order>2</sort_order>
-        </kevnkconfig>
+        </luckyconfig>
     </tabs>
 -->
     

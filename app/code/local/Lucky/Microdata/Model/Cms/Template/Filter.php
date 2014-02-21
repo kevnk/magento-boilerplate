@@ -32,7 +32,7 @@
  * @package    Mage_Core
  * @author     Magento Core Team <core@magentocommerce.com>
  */
-class Kevnk_Microdata_Model_Cms_Template_Filter extends Mage_Cms_Model_Template_Filter
+class Lucky_Microdata_Model_Cms_Template_Filter extends Mage_Cms_Model_Template_Filter
 {
     /**
      * Retrieve Skin URL directive

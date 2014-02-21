@@ -1,34 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <modules>
-        <Kevnk_Microdata>
+        <Lucky_Microdata>
             <version>1.0.0</version>
-        </Kevnk_Microdata>
+        </Lucky_Microdata>
     </modules>
 
     <global>
         <blocks>
-            <kevnk_microdata>
-                <class>Kevnk_Microdata_Block</class>
-            </kevnk_microdata>
+            <lucky_microdata>
+                <class>Lucky_Microdata_Block</class>
+            </lucky_microdata>
         </blocks>
 
         <models>
-            <kevnk_microdata>
-                <class>Kevnk_Microdata_Model</class>
-            </kevnk_microdata>
+            <lucky_microdata>
+                <class>Lucky_Microdata_Model</class>
+            </lucky_microdata>
             
             <cms>
                 <rewrite>
-                    <template_filter>Kevnk_Microdata_Model_Cms_Template_Filter</template_filter>
+                    <template_filter>Lucky_Microdata_Model_Cms_Template_Filter</template_filter>
                 </rewrite>
             </cms>
         </models>
 
         <helpers>
-            <kevnk_microdata>
-                <class>Kevnk_Microdata_Helper</class>
-            </kevnk_microdata>
+            <lucky_microdata>
+                <class>Lucky_Microdata_Helper</class>
+            </lucky_microdata>
         </helpers>
         
         <cms>
@@ -42,7 +42,7 @@
         <layout>
             <updates>
                 <default>
-                    <file>kevnk/microdata.xml</file>
+                    <file>lucky/microdata.xml</file>
                 </default>
             </updates>
         </layout>

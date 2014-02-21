@@ -13,20 +13,38 @@ class Lucky_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
 
     const MICRODATA_VOCAB_URI = "http://schema.org/";
 
+    protected $_pathInfo;
+    protected $_uri;
+
+    protected function _getUri() {
+        if(is_null($this->_uri)) {
+            $getRequest = Mage::app()->getRequest();
+            $this->_uri = substr($getRequest->getRequestUri(), 1);            
+        }
+        return $this->_uri;
+    }
+
+    protected function _getPathInfo() {
+        if(is_null($this->_pathInfo)) {
+            $getRequest = Mage::app()->getRequest();
+            $uri = $this->_getUri();
+            $moduleName = $getRequest->getModuleName();
+            $controllerName = $getRequest->getControllerName();
+            $actionName = $getRequest->getActionName();
+            $this->_pathInfo = $moduleName . '/' . $controllerName . '/' . $actionName;
+        }
+        return $this->_pathInfo;
+    }
+
     public function getBodyMicrodata($page = null) {
         
-        //-- Used for PopupPage and PrintPage
         if($page) {
             return $this->itemType($page);
         }
         
-        $getRequest = Mage::app()->getRequest();
-        $uri = substr($getRequest->getRequestUri(), 1);
-        $moduleName = $getRequest->getModuleName();
-        $controllerName = $getRequest->getControllerName();
-        $actionName = $getRequest->getActionName();
-        $pathInfo = $moduleName . '/' . $controllerName . '/' . $actionName;
-        
+        $pathInfo = $this->_getPathInfo();
+        $uri = $this->_getUri();
+
         //-- Check if CollectionPage
         if($pathInfo == 'catalog/category/view') {
             return $this->itemType( array('CollectionPage', 'ItemList') );
@@ -56,8 +74,7 @@ class Lucky_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
         if(Mage::getStoreConfig('micro/urlkeys/contactpage',Mage::app()->getStore()) == $uri) {
             return $this->itemType('ContactPage');
         };
-        
-        
+            
         //-- Check if ProfilePage
         if(Mage::getStoreConfig('micro/urlkeys/profilepage',Mage::app()->getStore()) == $uri) {
             return $this->itemType('ProfilePage');
@@ -66,6 +83,51 @@ class Lucky_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
         return $this->itemType('WebPage');
     }
     
+    public function getPageMicrodata($page = null) {
+        $pathInfo = $this->_getPathInfo();
+        $uri = $this->_getUri();
+
+        //-- Check if CollectionPage
+        if($pathInfo == 'catalog/category/view') {
+            // TODO: add page microdata
+        }
+        
+        //-- Check if ItemPage
+        if($pathInfo == 'catalog/product/view') {
+            $microdata = '';
+            $product = Mage::registry('current_product');
+
+            $microdata .= $this->microdata('name','', Mage::helper('catalog/output')->productAttribute($product, $product->getName(), 'name') );
+            return $microdata;
+        }
+        
+        //-- Check if CheckoutPage
+        if($pathInfo == 'checkout/onepage/index') {
+            // TODO: add page microdata
+        }
+        
+        //-- Check if SearchResultsPage
+        if($pathInfo == 'catalogsearch/result/index' || $pathInfo == 'catalogsearch/advanced/result') {
+            // TODO: add page microdata
+        }
+        
+        //-- Check if AboutPage
+        if(Mage::getStoreConfig('micro/urlkeys/aboutpage',Mage::app()->getStore()) == $uri) {
+            // TODO: add page microdata
+        };
+        
+        //-- Check if ContactPage
+        if(Mage::getStoreConfig('micro/urlkeys/contactpage',Mage::app()->getStore()) == $uri) {
+            // TODO: add page microdata
+        };
+            
+        //-- Check if ProfilePage
+        if(Mage::getStoreConfig('micro/urlkeys/profilepage',Mage::app()->getStore()) == $uri) {
+            // TODO: add page microdata
+        };
+
+    }
+
     public function microdata($prop='', $type='', $content='', $tag='') {
         $microdata = '';
         if($content) {

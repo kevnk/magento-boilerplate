@@ -42,7 +42,7 @@
         <layout>
             <updates>
                 <default>
-                    <file>lucky/microdata.xml</file>
+                    <file>microdata.xml</file>
                 </default>
             </updates>
         </layout>

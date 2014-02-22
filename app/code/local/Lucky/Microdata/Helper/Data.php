@@ -19,7 +19,8 @@ class Lucky_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
     protected function _getUri() {
         if(is_null($this->_uri)) {
             $getRequest = Mage::app()->getRequest();
-            $this->_uri = substr($getRequest->getRequestUri(), 1);            
+            $uri = $getRequest->getRequestUri();
+            $this->_uri = substr(str_replace('index.php/', '', $uri), 1);
         }
         return $this->_uri;
     }

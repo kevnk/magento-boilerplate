@@ -47,12 +47,12 @@ class Lucky_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
 
         //-- Check if CollectionPage
         if($pathInfo == 'catalog/category/view') {
-            return $this->itemType( array('CollectionPage', 'ItemList') );
+            return $this->itemType('CollectionPage');
         }
         
         //-- Check if ItemPage
         if($pathInfo == 'catalog/product/view') {
-            return $this->itemType('ItemPage');
+            return $this->itemType( array('Product', 'ItemPage') );
         }
         
         //-- Check if CheckoutPage
@@ -144,24 +144,26 @@ class Lucky_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
     }
 
     public function itemProp($prop) {
-        $itemProp = '';
+        $itemProp = ' itemprop="';
         if(is_array($prop)) {
+            $i = 0;
             foreach($prop as $item) {
-                $itemProp .= ' itemprop="' . $item . '"';
+                $itemProp .= $i++ ? ' ' . $item : $item;
             }
         } else {
-            $itemProp = ' itemprop="' . $prop . '"';
+            $itemProp .= $prop;
         }
+        $itemProp .= '"';
         
         return $itemProp;
     }
     
     public function itemType($type) {
-        $itemType = 'itemscope';
+        $itemType = ' itemscope';
         if(is_array($type)) {
             $i = 0;
             foreach($type as $item) {
-                $itemType .= !$i++ ? ' itemtype="' . self::MICRODATA_VOCAB_URI . $item . '"' : ' additionaltype="' . self::MICRODATA_VOCAB_URI . $item . '"';
+                $itemType .= !$i++ ? ' itemtype="' . self::MICRODATA_VOCAB_URI . $item . '"' : ' additionalType="' . self::MICRODATA_VOCAB_URI . $item . '"';
             }
         } else {
             $itemType .= ' itemtype="' . self::MICRODATA_VOCAB_URI . $type . '"';

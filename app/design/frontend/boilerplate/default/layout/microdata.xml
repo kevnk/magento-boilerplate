@@ -6,9 +6,6 @@
     <reference name="after_body_start">
       <block type="core/template" name="microdata_after_body_start" before="-" template="microdata/after_body_start.phtml"/>
     </reference>
-    <reference name="before_body_end">
-      <block type="core/template" name="microdata_before_body_end" after="-" template="microdata/before_body_end.phtml"/>
-    </reference>
   </default>
 
 </layout>

@@ -55,8 +55,7 @@
         <?php $_weeeTaxAttributes = $_weeeHelper->getProductWeeeAttributesForDisplay($_product); ?>
     <?php endif; ?>
 
-    <div class="price-box" <?php echo $this->helper('lucky_microdata')->microdata('', ($_product->getTypeId() == 'grouped' ? 'AggregateOffer' : 'Offer') ); ?>>
-    <?php echo $this->helper('lucky_microdata')->microdata('name', '', $_product->getName()); ?>
+    <div class="price-box">
     <?php echo $this->helper('lucky_microdata')->microdata('priceCurrency', '', Mage::app()->getStore()->getCurrentCurrencyCode()); ?>
 
     <?php $_price = $_taxHelper->getPrice($_product, $_product->getPrice()) ?>
@@ -367,7 +366,7 @@
         <span class="minimal-price-link">
         <?php endif?>
             <span class="label"><?php echo $this->__('As low as:') ?></span>
-            <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('lowprice'); ?>>
+            <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                 <?php echo $_coreHelper->currency($_minimalPriceDisplayValue,true,false) ?>
             </span>
         <?php if ($this->getUseLinkForAsLowAs()):?>
@@ -407,7 +406,7 @@
                         $_showPrice = $_exclTax;
                     }
                     ?>
-                <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>">
+                <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('lowprice'); ?>>
                     <?php echo $_coreHelper->currency($_showPrice, true, false) ?>
                 </span>
                 <?php endif; ?>

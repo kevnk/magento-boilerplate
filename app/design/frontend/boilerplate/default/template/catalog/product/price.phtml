@@ -384,6 +384,7 @@
     ?>
     <?php if ($this->getDisplayMinimalPrice() && $_minimalPriceValue): ?>
         <div class="price-box">
+        <?php echo $this->helper('lucky_microdata')->microdata('priceCurrency', '', Mage::app()->getStore()->getCurrentCurrencyCode()); ?>
             <p class="minimal-price">
                 <span class="price-label"><?php echo $this->__('Starting at:') ?></span>
                 <?php if ($_taxHelper->displayBothPrices()): ?>

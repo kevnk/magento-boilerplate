@@ -60,8 +60,8 @@
     <?php if ($_hasAssociatedProducts): ?>
     <?php foreach ($_associatedProducts as $_item): ?>
         <?php $_finalPriceInclTax = $this->helper('tax')->getPrice($_item, $_item->getFinalPrice(), true) ?>
-        <tr>
-            <td><?php echo $this->htmlEscape($_item->getName()) ?></td>
+        <tr <?php echo $this->helper('lucky_microdata')->microdata('offers', 'Offer'); ?>>
+            <td <?php echo $this->helper('lucky_microdata')->microdata('name'); ?>><?php echo $this->htmlEscape($_item->getName()) ?></td>
             <?php if ($this->getCanShowProductPrice($_product)): ?>
             <td class="a-right">
                 <?php if ($this->getCanShowProductPrice($_item)): ?>
@@ -74,8 +74,10 @@
             <td class="a-center">
             <?php if ($_item->isSaleable()) : ?>
                 <input type="text" name="super_group[<?php echo $_item->getId() ?>]" maxlength="12" value="<?php echo $_item->getQty()*1 ?>" title="<?php echo $this->__('Qty') ?>" class="input-text qty" />
+                <?php echo $this->helper('lucky_microdata')->microdata('availability', '', 'InStock', 'link'); ?>
             <?php else: ?>
                 <p class="availability out-of-stock"><span><?php echo $this->__('Out of stock') ?></span></p>
+                <?php echo $this->helper('lucky_microdata')->microdata('availability', '', 'OutOfStock', 'link'); ?>
             <?php endif; ?>
             </td>
             <?php endif; ?>

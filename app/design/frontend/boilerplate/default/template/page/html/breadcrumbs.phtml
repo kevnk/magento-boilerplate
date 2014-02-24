@@ -27,9 +27,10 @@
 <?php if($crumbs && is_array($crumbs)): ?>
 <ul class="breadcrumb" xmlns:v="http://rdf.data-vocabulary.org/#">
     <?php foreach($crumbs as $_crumbName=>$_crumbInfo): ?>
-        <li class="<?php echo $_crumbName ?>" typeof="v:Breadcrumb">
+        <?php $_isHome = Mage::getBaseUrl() == $_crumbInfo['link']; ?>
+        <li class="<?php echo $_crumbName ?>"<?php if(!($_isHome || $_crumbInfo['last'])): ?> typeof="v:Breadcrumb"<?php endif; ?>>
         <?php if($_crumbInfo['link']): ?>
-            <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->htmlEscape($_crumbInfo['title']) ?>" rel="v:url" property="v:title"><?php echo $this->htmlEscape($_crumbInfo['label']) ?></a>
+            <a href="<?php echo $_crumbInfo['link'] ?>" title="<?php echo $this->htmlEscape($_crumbInfo['title']) ?>"<?php if(!$_isHome): ?> rel="v:url" property="v:title"<?php endif; ?>><?php echo $this->htmlEscape($_crumbInfo['label']) ?></a>
         <?php elseif($_crumbInfo['last']): ?>
             <strong><?php echo $this->htmlEscape($_crumbInfo['label']) ?></strong>
         <?php else: ?>

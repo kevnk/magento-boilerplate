@@ -60,10 +60,10 @@
                 <div <?php echo $this->helper('lucky_microdata')->microdata('offers', 'Offer'); ?>>
             <?php endif ?>
             <?php echo $this->getChildHtml('product_type_data') ?>
-            <?php echo $this->getTierPriceHtml() ?>
             <?php if ($_product->getTypeId != 'grouped'): ?>
                 </div>
             <?php endif; ?>
+            <?php echo $this->getTierPriceHtml() ?>
             <?php echo $this->getChildHtml('extrahint') ?>
 
             <?php if (!$this->hasOptions()):?>

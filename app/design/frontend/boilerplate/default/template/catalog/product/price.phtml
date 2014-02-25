@@ -56,7 +56,21 @@
     <?php endif; ?>
 
     <div class="price-box">
-    <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('priceCurrency', '', Mage::app()->getStore()->getCurrentCurrencyCode()); ?>
+    <?php if(!$this->getIdSuffix() && $_tierPrices = $_product->getTierPrice()): ?>
+        <span <?php echo $this->helper('lucky_microdata')->microdata('priceSpecification', 'PriceSpecification'); ?>>
+            <span <?php echo $this->helper('lucky_microdata')->microdata('eligibleQuantity', 'QuantitativeValue'); ?>>
+            <?php 
+                echo $this->helper('lucky_microdata')->microdata('minValue', '', 1 );
+                if($_firstTier = $_tierPrices[0]) {
+                    echo $this->helper('lucky_microdata')->microdata('maxValue', '', ($_firstTier['price_qty'] - 1) ); 
+                }
+            ?>
+            </span>
+        </span>
+    <?php endif; ?>
+    <?php if(!$this->getIdSuffix()): ?>
+        <?php echo $this->helper('lucky_microdata')->microdata('priceCurrency', '', Mage::app()->getStore()->getCurrentCurrencyCode()); ?>
+    <?php endif; ?>
 
     <?php $_price = $_taxHelper->getPrice($_product, $_product->getPrice()) ?>
     <?php $_regularPrice = $_taxHelper->getPrice($_product, $_product->getPrice(), $_simplePricesTax) ?>
@@ -384,7 +398,7 @@
     ?>
     <?php if ($this->getDisplayMinimalPrice() && $_minimalPriceValue): ?>
         <div class="price-box">
-        <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('priceCurrency', '', Mage::app()->getStore()->getCurrentCurrencyCode()); ?>
+            <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('priceCurrency', '', Mage::app()->getStore()->getCurrentCurrencyCode()); ?>
             <p class="minimal-price">
                 <span class="price-label"><?php echo $this->__('Starting at:') ?></span>
                 <?php if ($_taxHelper->displayBothPrices()): ?>

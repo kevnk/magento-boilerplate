@@ -56,7 +56,7 @@
     <?php endif; ?>
 
     <div class="price-box">
-    <?php echo $this->helper('lucky_microdata')->microdata('priceCurrency', '', Mage::app()->getStore()->getCurrentCurrencyCode()); ?>
+    <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('priceCurrency', '', Mage::app()->getStore()->getCurrentCurrencyCode()); ?>
 
     <?php $_price = $_taxHelper->getPrice($_product, $_product->getPrice()) ?>
     <?php $_regularPrice = $_taxHelper->getPrice($_product, $_product->getPrice(), $_simplePricesTax) ?>
@@ -68,7 +68,7 @@
             <?php if ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 0)): // including ?>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                         <?php echo $_coreHelper->currency($_price+$_weeeTaxAmount,true,false) ?>
                     </span>
                 </span>
@@ -81,7 +81,7 @@
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 1)): // incl. + weee ?>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                         <?php echo $_coreHelper->currency($_price+$_weeeTaxAmount,true,false) ?>
                     </span>
                 </span>
@@ -101,7 +101,7 @@
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 4)): // incl. + weee ?>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                         <?php echo $_coreHelper->currency($_price+$_weeeTaxAmount,true,false) ?>
                     </span>
                 </span>
@@ -121,7 +121,7 @@
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 2)): // excl. + weee + final ?>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                         <?php echo $_coreHelper->currency($_price,true,false) ?>
                     </span>
                 </span>
@@ -139,7 +139,7 @@
             <?php else: ?>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                         <?php echo $_coreHelper->currency($_price,true,false) ?>
                     </span>
                 </span>
@@ -152,11 +152,11 @@
             <?php endif; ?>
         <?php else: ?>
             <?php if ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 0)): // including ?>
-                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                     <?php echo $_coreHelper->currency($_price+$_weeeTaxAmount,true,true) ?>
                 </span>
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 1)): // incl. + weee ?>
-                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                     <?php echo $_coreHelper->currency($_price+$_weeeTaxAmount,true,true) ?>
                 </span>
                 <span class="weee">(
@@ -167,7 +167,7 @@
                     <?php endforeach; ?>
                     )</span>
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 4)): // incl. + weee ?>
-                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                     <?php echo $_coreHelper->currency($_price+$_weeeTaxAmount,true,true) ?>
                 </span>
                 <span class="weee">(
@@ -178,17 +178,17 @@
                     <?php endforeach; ?>
                     )</span>
             <?php elseif ($_weeeTaxAmount && $_weeeHelper->typeOfDisplay($_product, 2)): // excl. + weee + final ?>
-                <span class="regular-price" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>><?php echo $_coreHelper->currency($_price,true,true) ?></span><br />
+                <span class="regular-price" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>><?php echo $_coreHelper->currency($_price,true,true) ?></span><br />
                 <?php foreach ($_weeeTaxAttributes as $_weeeTaxAttribute): ?>
                     <span class="weee">
                         <?php echo $_weeeTaxAttribute->getName(); ?>: <?php echo $_coreHelper->currency($_weeeTaxAttribute->getAmount(), true, true); ?>
                     </span>
                 <?php endforeach; ?>
-                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                     <?php echo $_coreHelper->currency($_price+$_weeeTaxAmount,true,true) ?>
                 </span>
             <?php else: ?>
-                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                <span class="regular-price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                     <?php echo $_coreHelper->currency($_price,true,true) ?>
                 </span>
             <?php endif; ?>
@@ -209,7 +209,7 @@
                     <span class="price-label"><?php echo $this->__('Special Price:') ?></span>
                     <span class="price-excluding-tax">
                         <span class="label"><?php echo $_taxHelper->__('Excl. Tax:') ?></span>
-                        <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                        <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                             <?php echo $_coreHelper->currency($_finalPrice+$_weeeTaxAmount,true,false) ?>
                         </span>
                     </span>
@@ -241,7 +241,7 @@
                 <span class="price-label"><?php echo $this->__('Special Price:') ?></span>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $_taxHelper->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                         <?php echo $_coreHelper->currency($_finalPrice+$_weeeTaxAmount,true,false) ?>
                     </span>
                 </span>
@@ -271,7 +271,7 @@
                 <span class="price-label"><?php echo $this->__('Special Price:') ?></span>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $_taxHelper->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                         <?php echo $_coreHelper->currency($_finalPrice+$_weeeTaxAmount,true,false) ?>
                     </span>
                 </span>
@@ -301,7 +301,7 @@
                 <span class="price-label"><?php echo $this->__('Special Price:') ?></span>
                 <span class="price-excluding-tax">
                     <span class="label"><?php echo $_taxHelper->__('Excl. Tax:') ?></span>
-                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                    <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                         <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>
                     </span>
                 </span>
@@ -330,7 +330,7 @@
                     <span class="price-label"><?php echo $this->__('Special Price:') ?></span>
                     <span class="price-excluding-tax">
                         <span class="label"><?php echo $_taxHelper->__('Excl. Tax:') ?></span>
-                        <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                        <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                             <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>
                         </span>
                     </span>
@@ -344,7 +344,7 @@
             <?php else: ?>
             <p class="special-price">
                 <span class="price-label"><?php echo $this->__('Special Price:') ?></span>
-                <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+                <span class="price" id="product-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                     <?php echo $_coreHelper->currency($_finalPrice,true,false) ?>
                 </span>
             </p>
@@ -366,7 +366,7 @@
         <span class="minimal-price-link">
         <?php endif?>
             <span class="label"><?php echo $this->__('As low as:') ?></span>
-            <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('price'); ?>>
+            <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('price'); ?>>
                 <?php echo $_coreHelper->currency($_minimalPriceDisplayValue,true,false) ?>
             </span>
         <?php if ($this->getUseLinkForAsLowAs()):?>
@@ -384,13 +384,13 @@
     ?>
     <?php if ($this->getDisplayMinimalPrice() && $_minimalPriceValue): ?>
         <div class="price-box">
-        <?php echo $this->helper('lucky_microdata')->microdata('priceCurrency', '', Mage::app()->getStore()->getCurrentCurrencyCode()); ?>
+        <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('priceCurrency', '', Mage::app()->getStore()->getCurrentCurrencyCode()); ?>
             <p class="minimal-price">
                 <span class="price-label"><?php echo $this->__('Starting at:') ?></span>
                 <?php if ($_taxHelper->displayBothPrices()): ?>
                     <span class="price-excluding-tax">
                         <span class="label"><?php echo $this->helper('tax')->__('Excl. Tax:') ?></span>
-                        <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('lowprice'); ?>>
+                        <span class="price" id="price-excluding-tax-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('lowprice'); ?>>
                             <?php echo $_coreHelper->currency($_exclTax, true, false) ?>
                         </span>
                     </span>
@@ -407,7 +407,7 @@
                         $_showPrice = $_exclTax;
                     }
                     ?>
-                <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php echo $this->helper('lucky_microdata')->microdata('lowprice'); ?>>
+                <span class="price" id="product-minimal-price-<?php echo $_id ?><?php echo $this->getIdSuffix() ?>" <?php if(!$this->getIdSuffix()) echo $this->helper('lucky_microdata')->microdata('lowprice'); ?>>
                     <?php echo $_coreHelper->currency($_showPrice, true, false) ?>
                 </span>
                 <?php endif; ?>

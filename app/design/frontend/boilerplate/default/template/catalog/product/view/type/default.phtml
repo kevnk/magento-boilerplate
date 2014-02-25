@@ -29,10 +29,14 @@
 
 <?php if ($_product->isAvailable()): ?>
     <p class="availability in-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('In stock') ?></span></p>
-    <?php echo $this->helper('lucky_microdata')->microdata('availability', '', 'InStock', 'link'); ?>
+    <?php if ($_product->getTypeId() != 'grouped'): ?>
+      <?php echo $this->helper('lucky_microdata')->microdata('availability', '', 'InStock', 'link'); ?>
+    <?php endif; ?>
 <?php else: ?>
     <p class="availability out-of-stock"><?php echo $this->__('Availability:') ?> <span><?php echo $this->__('Out of stock') ?></span></p>
-    <?php echo $this->helper('lucky_microdata')->microdata('availability', '', 'OutOfStock', 'link'); ?>
+    <?php if ($_product->getTypeId() != 'grouped'): ?>
+      <?php echo $this->helper('lucky_microdata')->microdata('availability', '', 'OutOfStock', 'link'); ?>
+    <?php endif; ?>
 <?php endif; ?>
 <?php echo $this->getChildHtml('product_type_data_extra') ?>
 <?php echo $this->getPriceHtml($_product) ?>

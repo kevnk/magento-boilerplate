@@ -85,47 +85,65 @@ class Lucky_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
     }
     
     public function getPageMicrodata($page = null) {
+        $microdata = '';
         $pathInfo = $this->_getPathInfo();
         $uri = $this->_getUri();
+        $currenUrl = Mage::helper('core/url')->getCurrentUrl();
 
-        //-- Check if CollectionPage
+        //-- Check if Category Page
         if($pathInfo == 'catalog/category/view') {
             // TODO: add page microdata
-        }
-        
-        //-- Check if ItemPage
-        if($pathInfo == 'catalog/product/view') {
-            $microdata = '';
-            $product = Mage::registry('current_product');
-
-            $microdata .= $this->microdata('name','', Mage::helper('catalog/output')->productAttribute($product, $product->getName(), 'name') );
             return $microdata;
         }
         
-        //-- Check if CheckoutPage
+        //-- Check if Product Page
+        if($pathInfo == 'catalog/product/view') {
+            $product = Mage::registry('current_product');
+            $helper = Mage::helper('catalog/output');
+
+            $metaDesc = $helper->productAttribute($product, $product->getMetaDescription(), 'meta_description');
+            $longDesc = $helper->productAttribute($product, $product->getDescription(), 'description');
+            $shortDesc = $helper->productAttribute($product, nl2br($product->getShortDescription()), 'short_description');
+            $description = $metaDesc ? $metaDesc : ($longDesc ? $longDesc : $shortDesc);
+
+            $microdata .= $description ? $this->microdata('description', '', strip_tags($description)) : '';
+            $microdata .= $product->getSku() ? $this->microdata('sku', '', $helper->productAttribute($product, $product->getSku(), 'sku')) : '';
+            $microdata .= $product->getBrand() ? $this->microdata('brand', '', $helper->productAttribute($product, $product->getBrand(), 'brand')) : '';
+            $microdata .= $currenUrl ? $this->microdata('url', '', $currenUrl) : '';
+
+            return $microdata;
+        }
+        
+        //-- Check if Checkout Page
         if($pathInfo == 'checkout/onepage/index') {
             // TODO: add page microdata
+            return $microdata;
         }
         
-        //-- Check if SearchResultsPage
+        //-- Check if Search Results Page
         if($pathInfo == 'catalogsearch/result/index' || $pathInfo == 'catalogsearch/advanced/result') {
             // TODO: add page microdata
+            return $microdata;
         }
         
-        //-- Check if AboutPage
+        //-- Check if About Page
         if(Mage::getStoreConfig('micro/urlkeys/aboutpage',Mage::app()->getStore()) == $uri) {
             // TODO: add page microdata
+            return $microdata;
         };
         
-        //-- Check if ContactPage
+        //-- Check if Contact Page
         if(Mage::getStoreConfig('micro/urlkeys/contactpage',Mage::app()->getStore()) == $uri) {
             // TODO: add page microdata
+            return $microdata;
         };
             
-        //-- Check if ProfilePage
+        //-- Check if Profile Page
         if(Mage::getStoreConfig('micro/urlkeys/profilepage',Mage::app()->getStore()) == $uri) {
             // TODO: add page microdata
+            return $microdata;
         };
+
 
     }
 

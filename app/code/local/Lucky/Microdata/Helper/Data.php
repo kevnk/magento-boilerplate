@@ -117,34 +117,40 @@ class Lucky_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
         //-- Check if Checkout Page
         if($pathInfo == 'checkout/onepage/index') {
             // TODO: add page microdata
+            $microdata .= $this->microdata('name', '', Mage::app()->getStore()->getGroup()->getName() . ' Checkout');
             return $microdata;
         }
         
         //-- Check if Search Results Page
         if($pathInfo == 'catalogsearch/result/index' || $pathInfo == 'catalogsearch/advanced/result') {
             // TODO: add page microdata
+            $microdata .= $this->microdata('name', '', "Search results for: '" . Mage::helper('catalogsearch')->getEscapedQueryText() . "'");
             return $microdata;
         }
         
         //-- Check if About Page
         if(Mage::getStoreConfig('micro/urlkeys/aboutpage',Mage::app()->getStore()) == $uri) {
             // TODO: add page microdata
+            $microdata .= $this->microdata('name', '', 'About ' . Mage::app()->getStore()->getGroup()->getName());
             return $microdata;
         };
         
         //-- Check if Contact Page
         if(Mage::getStoreConfig('micro/urlkeys/contactpage',Mage::app()->getStore()) == $uri) {
             // TODO: add page microdata
+            $microdata .= $this->microdata('name', '', 'Contact ' . Mage::app()->getStore()->getGroup()->getName());
             return $microdata;
         };
             
         //-- Check if Profile Page
         if(Mage::getStoreConfig('micro/urlkeys/profilepage',Mage::app()->getStore()) == $uri) {
             // TODO: add page microdata
+            $microdata .= $this->microdata('name', '', 'Profile of ' . Mage::app()->getStore()->getGroup()->getName());
             return $microdata;
         };
 
-
+        $microdata .= $this->microdata('name', '', Mage::app()->getStore()->getGroup()->getName());
+        return $microdata;
     }
 
     public function microdata($prop='', $type='', $content='', $tag='') {

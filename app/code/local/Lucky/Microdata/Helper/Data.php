@@ -208,5 +208,12 @@ class Lucky_Microdata_Helper_Data extends Mage_Core_Helper_Abstract
         $content = $content ? ' content="' . $content . '"' : '';
         return '<meta' . $itemType . $itemProp . $content . '/>';
     }
+
+    public function getTierPrices($product) {
+        // We have to reset the tier price data to get the full array
+        // @see: http://www.magentocommerce.com/boards/viewthread/74714/
+        $product->setData('tier_price',null);
+        return Mage::getBlockSingleton('catalog/product_price')->getTierPrices($product);
+    }
     
 }

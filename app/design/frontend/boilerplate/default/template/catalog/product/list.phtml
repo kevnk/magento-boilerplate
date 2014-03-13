@@ -30,6 +30,30 @@
                 <?php echo $this->getReviewsSummaryHtml($_product) ?>
                 <?php endif; ?>
                 <?php echo $this->getPriceHtml($_product, true) ?>
+
+                <?php // Tier Price Microdata ?>
+                <?php $_tierPrices = $this->helper('lucky_microdata')->getTierPrices($_product); ?>
+                <?php if (!empty($_tierPrices)): ?>
+                    <?php $j = 0; ?>
+                    <?php foreach ($_tierPrices as $_price): ?>
+                        <?php 
+                            $_startTierPrice = $_tierPrices[$j++];
+                            $_nextTierPrice = isset( $_tierPrices[$j] ) ? $_tierPrices[$i] : false;
+                        ?>
+                        <span <?php echo $this->helper('lucky_microdata')->microdata('priceSpecification', 'PriceSpecification'); ?>>
+                            <?php echo $this->helper('lucky_microdata')->microdata('price', '', number_format( (float)$_startTierPrice['price'], 2 )); ?>
+                            <span <?php echo $this->helper('lucky_microdata')->microdata('eligibleQuantity', 'QuantitativeValue'); ?>>
+                                <?php 
+                                    echo $this->helper('lucky_microdata')->microdata('minValue', '', $_startTierPrice['price_qty'] );
+                                    if($_nextTierPrice) {
+                                        echo $this->helper('lucky_microdata')->microdata('maxValue', '', $_nextTierPrice['price_qty'] - 1 ); 
+                                    }
+                                ?>
+                            </span>
+                        </span>
+                    <?php endforeach; ?>
+                <?php endif ?>
+
                 <?php if($_product->isSaleable()): ?>
                     <p><button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button></p>
                     <?php echo $this->helper('lucky_microdata')->microdata('availability', '', 'InStock', 'link'); ?>
@@ -72,6 +96,30 @@
                 <?php echo $this->getReviewsSummaryHtml($_product, 'short') ?>
                 <?php endif; ?>
                 <?php echo $this->getPriceHtml($_product, true) ?>
+
+                <?php // Tier Price Microdata ?>
+                <?php $_tierPrices = $this->helper('lucky_microdata')->getTierPrices($_product); ?>
+                <?php if (!empty($_tierPrices)): ?>
+                    <?php $j = 0; ?>
+                    <?php foreach ($_tierPrices as $_price): ?>
+                        <?php 
+                            $_startTierPrice = $_tierPrices[$j++];
+                            $_nextTierPrice = isset( $_tierPrices[$j] ) ? $_tierPrices[$j] : false;
+                        ?>
+                        <span <?php echo $this->helper('lucky_microdata')->microdata('priceSpecification', 'PriceSpecification'); ?>>
+                            <?php echo $this->helper('lucky_microdata')->microdata('price', '', number_format( (float)$_startTierPrice['price'], 2 )); ?>
+                            <span <?php echo $this->helper('lucky_microdata')->microdata('eligibleQuantity', 'QuantitativeValue'); ?>>
+                                <?php 
+                                    echo $this->helper('lucky_microdata')->microdata('minValue', '', $_startTierPrice['price_qty'] );
+                                    if($_nextTierPrice) {
+                                        echo $this->helper('lucky_microdata')->microdata('maxValue', '', $_nextTierPrice['price_qty'] - 1 ); 
+                                    }
+                                ?>
+                            </span>
+                        </span>
+                    <?php endforeach; ?>
+                <?php endif ?>
+
                 <div class="actions">
                     <?php if($_product->isSaleable()): ?>
                         <button type="button" title="<?php echo $this->__('Add to Cart') ?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo $this->__('Add to Cart') ?></span></span></button>
